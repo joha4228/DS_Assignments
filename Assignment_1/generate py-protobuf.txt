@@ -1,0 +1,18 @@
+Syntax:
+$ python -m grpc_tools.protoc -I. --python_out=. --pyi_out=. --grpc_python_out=. ./*.proto
+
+
+'python -m grpc_tools.protoc'   runs the grpc_tools.protoc module as a script.
+'-I.. '                         tells the tool where .proto files can be found.
+'--python_out=.'                tells the tool to generate the protocol buffers serialization code in the current directory.
+'--pyi_out=.'                   tells the tool where to generate the types for the protobuf
+'--grpc_python_out=.'           tells the tool to generate the gRPC code in the current directory.
+'../*.proto'                    is the name of the protocol buffers + gRPC definitions file.
+
+This Python command will run without any output, and at the end you’ll see two new files: 
+    *_pb2.py which is the protocol buffers code, 
+    *_pb2_grpc.py which is the gRPC client and server code.
+
+
+Example (run from 'C:\Users\johan\VScodeProjects\Distributed_systems_exercises\Assignment_1'):
+python -m grpc_tools.protoc -I. --python_out=./py_client1 --pyi_out=./py_client1 --grpc_python_out=./py_client1 ./myfirstproto.proto

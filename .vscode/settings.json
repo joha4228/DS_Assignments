@@ -1,0 +1,5 @@
+{
+    "python.analysis.typeCheckingMode": "basic",
+    "cmake.configureOnOpen": false,
+    "cmake.sourceDirectory": "C:/Users/johan/VScodeProjects/Distributed_systems_exercises/Lecture3/exercise5-gRPC/grpc"
+}

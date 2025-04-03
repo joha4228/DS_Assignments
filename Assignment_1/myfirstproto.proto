@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option go_package="go_server1/go_protos";
+
+//  Define a gRPC service
+//  A service is a class that holds all the rpc methods we want to be able to use.
+service FrequencyCalculator {
+    //  'Calculate' takes a string as input and returns a list of <key, 1> pairs, where key is a word and value is simply 1
+    rpc Calculate(Textk) returns (WordCountList) {} 
+
+    //  'Combine' combines all <key, 1> pairs with the same key by adding their values
+    rpc Combine(stream WordCount) returns (WordCountList) {}
+}
+
+
+//  Define messages
+//  Messages descripes the types of arguments (abstract data structures) we can use in the above rpc methods
+//  The number that each field is set equal to, is simply an identifier and... 
+//  ...thus its value doesn't matter as long as it's different for every field in a message structure.
+message Textk {
+    string text = 1;
+} 
+
+message WordCount {
+    string word = 1;
+    int32 count = 2;
+}
+
+message WordCountList {
+    // When compiled, names of generated types are in camelCase.
+    repeated WordCount word_counts = 17;
+}

@@ -1,0 +1,27 @@
+What did you like about this implementation?
+    - I like how simple the client side becomes when using grpc. It looks obvious what is being done because you don't see the implementation. 
+    But that is true for all abstraction. The cool thing here is that the server can be placed on a different machine and the client will not feel any difference.
+    I like the proto file syntax as well. It is very readable. There are not too many options, since it should be possible to generate the interface in a variety 
+    of programming languages, and you feel encouraged to keep it simple. 
+
+What you did not like about this implementation and why? 
+(think of effeciency, programming diffculties/learning curve, etc.)
+    - I did not like the idea of making a array with key:val pairs that potentially will have multiples of the same key (in the Calculate method). 
+    So I did not do it. It seemed much easier to start counting the words in the individual files right away and then add then Combine the results. 
+    It is more efficient to simply append to an array than to go through one to find out if a word is already there, for each word.
+    Because then you will only need to go through the list one time (in the Combine method).
+    
+    A lot of the time it was difficult to figure out how to return a method result correctly, using the types/messages defined in the protobuf files.
+    The first week I defined a message with a map type field because it seemed to fit the situation. 
+    Then after not succeeding in returning the values correctly, I changed the proto file to have a struct containing a string and an int32 (bc thats what pythons int are),
+    and spend the second week adjusting the code to make that work. During this period I discovered other issues that might have been what actually caused the trouble in the first iteration. 
+
+    Understanding the concept of creating individual client and server stub interfaces using a single file defining the commmunication format was not difficult. 
+    However, actually generating these interfaces proved more challenging since it was not imidiately clear to me what the different parts of the protoc command contribute with.
+    It was also difficult to figure out which parts of the example code, provided by grpc.io, are important and for what they are necessary.
+
+How could it have been done differently/better?
+    - It would be better to not count any words in the Calculate method and then use map[string]int32 as return type in the Combine method.
+    Doing that would bring down the number of time I have to loop through the words because I would not need to convert from array to map (to count the words frequencies) and back to array (to be able to sort and return).
+
+    Maybe it would also be good to stream the input text word for word instead of sending the whole text as a string, if the file sizes were larger.   

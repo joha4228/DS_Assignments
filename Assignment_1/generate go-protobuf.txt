@@ -1,0 +1,13 @@
+Syntax:
+$ protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative ./*.proto
+
+'protoc' 				                = The compiler program
+' --go_out=.' 				            = where to put the *first* output file
+' --go_opt=paths=source_relative' 	    = flag is specified, the output file is placed in the same relative directory as the input file.
+' --go-grpc_out=. 			            = where to put the *secund* output file
+' --go-grpc_opt=paths=source_relative'  = see 2nd flag
+' ./*.proto'				            = path to the proto-file that you want to compile.
+
+Example (run from 'C:\Users\johan\VScodeProjects\Distributed_systems_exercises\Assignment_1'): 
+protoc --go_out=./go_server1/go_protos --go_opt=paths=source_relative --go-grpc_out=./go_server1/go_protos --go-grpc_opt=paths=source_relative ./myfirstproto.proto
+
